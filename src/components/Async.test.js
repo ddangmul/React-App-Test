@@ -3,6 +3,11 @@ import Async from "./Async";
 
 describe("Async component", () => {
   test("renders posts if request succedds", async () => {
+    // 더미함수 생성
+    window.fetch = jest.fn();
+    window.fetch.mockResolvedValueOnce({
+      json: async () => [{ id: "p1", title: "First post" }],
+    });
     render(<Async />);
 
     // role 확인 https://www.w3.org/TR/html-aria/#docconformance
